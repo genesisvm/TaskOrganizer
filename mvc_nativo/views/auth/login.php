@@ -12,7 +12,7 @@
                 <div class="card shadow">
                     <div class="card-body">
                         <h3 class="card-title text-center mb-4">TaskOrganizer</h3>
-                        <form action="/mvc_nativo/public/index.php?action=doLogin" method="POST">
+                        <form action="/taskorganizer/mvc_nativo/public/index.php?action=doLogin" method="POST">
                             <div class="mb-3">
                                 <label class="form-label">Correo Electrónico</label>
                                 <input type="email" name="email" class="form-control" required>
@@ -23,7 +23,7 @@
                             </div>
                             <button type="submit" class="btn btn-primary w-100 mb-3">Ingresar</button>
                             <div class="text-center">
-                                <a href="/mvc_nativo/public/index.php?action=register" class="text-decoration-none">¿No tienes cuenta? Regístrate</a>
+                                <a href="/taskorganizer/mvc_nativo/public/index.php?action=register" class="text-decoration-none">¿No tienes cuenta? Regístrate</a>
                             </div>
                         </form>
                     </div>
