@@ -10,7 +10,10 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="#">TaskOrganizer</a>
-            <span class="navbar-text text-white">Hola, <?php echo $_SESSION['usuario_nombre']; ?></span>
+            <div class="d-flex align-items-center">
+                <span class="navbar-text text-white me-3">Hola, <?php echo htmlspecialchars($_SESSION['usuario_nombre']); ?></span>
+                <a href="index.php?action=logout" class="btn btn-sm btn-outline-light">Cerrar Sesión</a>
+            </div>
         </div>
     </nav>
 
@@ -20,7 +23,7 @@
                 <div class="card shadow-sm">
                     <div class="card-header bg-primary text-white">Nueva Tarea</div>
                     <div class="card-body">
-                        <form action="/mvc_nativo/public/index.php?action=store" method="POST">
+                        <form action="index.php?action=store" method="POST">
                             <div class="mb-3">
                                 <label class="form-label">Título</label>
                                 <input type="text" name="titulo" class="form-row form-control" required>
@@ -45,12 +48,13 @@
                                     <tr>
                                         <th>Tarea</th>
                                         <th>Descripción</th>
-                                        <th>Estado (AJAX)</th>
+                                        <th>Estado</th>
+                                        <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php if(empty($tareas)): ?>
-                                        <tr><td colspan="3" class="text-center text-muted">No tienes tareas registradas</td></tr>
+                                        <tr><td colspan="4" class="text-center text-muted">No tienes tareas registradas</td></tr>
                                     <?php else: ?>
                                         <?php foreach($tareas as $tarea): ?>
                                             <tr>
@@ -62,6 +66,10 @@
                                                         <option value="En Progreso" <?php echo $tarea['estado'] == 'En Progreso' ? 'selected' : ''; ?>>En Progreso</option>
                                                         <option value="Completada" <?php echo $tarea['estado'] == 'Completada' ? 'selected' : ''; ?>>Completada</option>
                                                     </select>
+                                                </td>
+                                                <td>
+                                                    <a href="index.php?action=edit&id=<?php echo $tarea['id']; ?>" class="btn btn-sm btn-outline-primary">Editar</a>
+                                                    <a href="index.php?action=delete&id=<?php echo $tarea['id']; ?>" class="btn btn-sm btn-outline-danger" onclick="return confirm('¿Seguro que quieres eliminar esta tarea?');">Eliminar</a>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
@@ -75,6 +83,6 @@
         </div>
     </div>
 
-    <script src="/mvc_nativo/public/js/ajax-tasks.js"></script>
+    <script src="js/ajax-tasks.js"></script>
 </body>
 </html>

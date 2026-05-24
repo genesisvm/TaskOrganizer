@@ -11,15 +11,14 @@
             formData.append('estado', newStatus);
             
             // Envia al endpoint nativo con Fetch API
-            fetch('/mvc_nativo/public/index.php?action=updateAjax', {
+            fetch('index.php?action=updateAjax', {
                 method: 'POST',
                 body: formData
             })
             .then(response => response.json())
             .then(data => {
                 if(data.success) {
-                    this.classList.add('is-valid');
-                    setTimeout(() => this.classList.remove('is-valid'), 1000);
+                    alert('¡Estado actualizado correctamente!');
                 } else {
                     alert('Error al procesar el cambio de estado.');
                 }

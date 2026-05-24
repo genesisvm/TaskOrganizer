@@ -12,7 +12,7 @@
                 <div class="card shadow">
                     <div class="card-body">
                         <h3 class="card-title text-center mb-4">Registro de Usuario</h3>
-                        <form action="/taskorganizer/mvc_nativo/public/index.php?action=doRegister" method="POST">
+                        <form action="index.php?action=doRegister" method="POST">
                             <div class="mb-3">
                                 <label class="form-label">Nombre Completo</label>
                                 <input type="text" name="nombre" class="form-control" required placeholder="Tu nombre">
@@ -27,7 +27,7 @@
                             </div>
                             <button type="submit" class="btn btn-success w-100 mb-3">Registrarme</button>
                             <div class="text-center">
-                                <a href="/taskorganizer/mvc_nativo/public/index.php?action=login" class="text-decoration-none">¿Ya tienes cuenta? Inicia sesión</a>
+                                <a href="index.php?action=login" class="text-decoration-none">¿Ya tienes cuenta? Inicia sesión</a>
                             </div>
                         </form>
                     </div>

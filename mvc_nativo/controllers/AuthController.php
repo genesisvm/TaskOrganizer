@@ -30,11 +30,11 @@ class AuthController {
             if ($user) {
                 $_SESSION['usuario_id'] = $user['id'];
                 $_SESSION['usuario_nombre'] = $user['nombre'];
-                header("Location: /taskorganizer/mvc_nativo/public/index.php");
+                header("Location: index.php");
                 exit();
             } else {
                 $_SESSION['error'] = "Credenciales incorrectas.";
-                header("Location: /taskorganizer/mvc_nativo/public/index.php?action=login");
+                header("Location: index.php?action=login");
                 exit();
             }
         }
@@ -49,7 +49,7 @@ class AuthController {
             if (!empty($nombre) && !empty($email) && !empty($password)) {
                 $userModel = new User();
                 $userModel->register($nombre, $email, $password);
-                header("Location: /taskorganizer/mvc_nativo/public/index.php?action=login");
+                header("Location: index.php?action=login");
                 exit();
             }
         }
@@ -57,7 +57,7 @@ class AuthController {
 
     public function logout() {
         session_destroy();
-        header("Location: /taskorganizer/mvc_nativo/public/index.php?action=login");
+        header("Location: index.php?action=login");
         exit();
     }
 }

@@ -30,7 +30,7 @@ if ($action === 'login') {
 
 // Filtro de las rutas privadas
 if (!isset($_SESSION['usuario_id'])) {
-    header("Location: /mvc_nativo/public/index.php?action=login");
+    header("Location: index.php?action=login");
     exit();
 }
 
@@ -40,6 +40,12 @@ if ($action === 'store') {
     $taskController->store();
 } elseif ($action === 'updateAjax') {
     $taskController->updateStatusAjax();
+} elseif ($action === 'edit') {
+    $taskController->edit();
+} elseif ($action === 'update') {
+    $taskController->update();
+} elseif ($action === 'delete') {
+    $taskController->delete();
 } else {
     $taskController->index();
 }

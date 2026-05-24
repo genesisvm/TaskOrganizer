@@ -34,4 +34,31 @@ class Task {
             'usuario_id' => $usuario_id
         ]);
     }
+
+    public function getById($id, $usuario_id) {
+        $query = "Select * From tareas Where id = :id And usuario_id = :usuario_id";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute(['id' => $id, 'usuario_id' => $usuario_id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function update($id, $usuario_id, $titulo, $descripcion) {
+        $query = "Update tareas Set titulo = :titulo, descripcion = :descripcion Where id = :id And usuario_id = :usuario_id";
+        $stmt = $this->db->prepare($query);
+        return $stmt->execute([
+            'titulo' => $titulo,
+            'descripcion' => $descripcion,
+            'id' => $id,
+            'usuario_id' => $usuario_id
+        ]);
+    }
+
+    public function delete($id, $usuario_id) {
+        $query = "Delete From tareas Where id = :id And usuario_id = :usuario_id";
+        $stmt = $this->db->prepare($query);
+        return $stmt->execute([
+            'id' => $id,
+            'usuario_id' => $usuario_id
+        ]);
+    }
 }

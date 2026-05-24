@@ -6,11 +6,6 @@ class TaskController {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
-        // Simulación de sesión para desarrollo rápido (reemplazar con Auth real si es necesario)
-        if (!isset($_SESSION['usuario_id'])) {
-            $_SESSION['usuario_id'] = 1; 
-            $_SESSION['usuario_nombre'] = "Usuario de Pruebas";
-        }
     }
 
     public function index() {
@@ -28,7 +23,7 @@ class TaskController {
                 $taskModel = new Task();
                 $taskModel->create($_SESSION['usuario_id'], $titulo, $descripcion);
             }
-            header("Location: /mvc_nativo/public/index.php");
+            header("Location: index.php");
             exit();
         }
     }
@@ -45,5 +40,47 @@ class TaskController {
             echo json_encode(['success' => $success]);
             exit();
         }
+    }
+
+    public function edit() {
+        if (isset($_GET['id'])) {
+            $id = intval($_GET['id']);
+            $taskModel = new Task();
+            $tarea = $taskModel->getById($id, $_SESSION['usuario_id']);
+            if ($tarea) {
+                require_once __DIR__ . '/../views/tasks/edit.php';
+            } else {
+                header("Location: index.php");
+                exit();
+            }
+        } else {
+            header("Location: index.php");
+            exit();
+        }
+    }
+
+    public function update() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
+            $id = intval($_POST['id']);
+            $titulo = trim($_POST['titulo']);
+            $descripcion = trim($_POST['descripcion']);
+            
+            if (!empty($titulo)) {
+                $taskModel = new Task();
+                $taskModel->update($id, $_SESSION['usuario_id'], $titulo, $descripcion);
+            }
+        }
+        header("Location: index.php");
+        exit();
+    }
+
+    public function delete() {
+        if (isset($_GET['id'])) {
+            $id = intval($_GET['id']);
+            $taskModel = new Task();
+            $taskModel->delete($id, $_SESSION['usuario_id']);
+        }
+        header("Location: index.php");
+        exit();
     }
 }
