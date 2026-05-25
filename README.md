@@ -12,6 +12,10 @@
 * **Génesis Mejía (Arquitectura Base y Autenticación Nativa):** PHP nativo 8.2, Arquitectura MVC manual, PDO, Sesiones nativas, JavaScript Asíncrono.
 * **Diego Franco (Migración a Framework):** Laravel 11, ORM Eloquent, Blade Template Engine, Middleware de Autenticación, Protección CSRF.
 
+### Ayuda de IA
+* **Gemini:** Explicación de la integración de MVC nativo
+* **Claude:** Ayuda para entender errores
+
 ## Requisitos e Instalación
 
 ### Clonar el Repositorio
